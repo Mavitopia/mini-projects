@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  background-image: url("./img/ben-karpinski--F7BlViP-9I-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#title {
+  margin-top: 20px;
+  color: rgb(223, 235, 237);
+  text-align: center;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 40px;
+}
+.main {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+}
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: conic-gradient(
+    rgb(182, 232, 242) 0%,
+    rgb(108, 191, 220) 40%,
+    rgb(239, 152, 175) 40%,
+    rgb(168, 99, 126) 60%,
+    rgb(116, 151, 116) 60%,
+    rgb(56, 107, 56) 100%
+  );
+
+  width: 320px;
+  height: 320px;
+  border-radius: 100%;
+}
+.inside-circle {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(218, 206, 206);
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+}
+#inside-circle-text {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+.main2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 360px;
+}
+.pointer {
+  rotate: 45deg;
+  animation: rotate 10s linear infinite;
+  position: absolute;
+  width: 340px;
+  height: 340px;
+}
+.moon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.breathe-in {
+  animation: step1 4s linear infinite;
+}
+.hold {
+  animation: none;
+  transform: scale(1.1);
+}
+.breathe-out {
+  animation: step2 4s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes step1 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+@keyframes step2 {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
