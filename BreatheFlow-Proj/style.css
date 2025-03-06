@@ -116,3 +116,76 @@ body {
     transform: scale(1);
   }
 }
+
+@media (max-width: 450px) {
+  #title {
+    font-size: 60px;
+  }
+  .circle {
+    width: 280px;
+    height: 280px;
+  }
+  .inside-circle {
+    width: 260px;
+    height: 260px;
+  }
+
+  .main2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    height: 320px;
+  }
+  .pointer {
+    rotate: 45deg;
+    animation: rotate 10s linear infinite;
+    position: absolute;
+    width: 275px;
+    height: 275px;
+  }
+  .moon {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 100%;
+  }
+
+  .breathe-in {
+    animation: step1 4s linear infinite;
+  }
+  .hold {
+    animation: none;
+    transform: scale(1.08);
+  }
+  .breathe-out {
+    animation: step2 4s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes step1 {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+  @keyframes step2 {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}
+
