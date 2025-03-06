@@ -189,3 +189,33 @@ body {
   }
 }
 
+@media (max-width: 380px) {
+  #title {
+    font-size: 60px;
+  }
+  .circle {
+    width: 240px;
+    height: 240px;
+  }
+  .inside-circle {
+    width: 220px;
+    height: 220px;
+  }
+
+  .main2 {
+    width: 280px;
+    height: 280px;
+  }
+  .pointer {
+    width: 235px;
+    height: 235px;
+  }
+  .moon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 100%;
+  }
+}
+
