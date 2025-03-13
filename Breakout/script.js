@@ -1,15 +1,15 @@
-$(document).ready(() => {
+jQuery(() => {
   // ********** BUTTON CLOSE MECHANIC **********
-  $("#how-to-play button").click(function () {
+  $("#how-to-play button").on('click',(function () {
     $("#how-to-play")
       .removeClass("moving-div-right")
       .addClass("moving-div-left");
-  });
-  $("#rule").click(function () {
+  }));
+  $("#rule").on('click',(function () {
     $("#how-to-play")
       .removeClass("moving-div-left")
       .addClass("moving-div-right");
-  });
+  }));
 
   // ********** GAME MECHANIC **********
 
@@ -29,7 +29,6 @@ $(document).ready(() => {
       this.y = y;
       this.radius = radius;
       this.color = color;
-      this.speed = 5;
       const minSpeed = 1;
       const maxSpeed = 1.5;
 
@@ -160,7 +159,7 @@ $(document).ready(() => {
     c.fillText("Score: " + score, 20, 20);
   }
 
-  // ********** GAMELOOP **********
+  // ********** GAME LOOP **********
   initializeWalls();
   let gameRunning = true;
   function gameLoop() {
