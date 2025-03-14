@@ -12,8 +12,8 @@
 
 BreatheFlow helps guide mindful breathing by providing prompts for when to inhale, hold, and exhale. It encourages relaxation, focus, and stress relief through structured breathing cycles.
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/BreatheFlow)
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/BreatheFlow)
+[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)
+[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 
 
@@ -23,8 +23,8 @@ BreatheFlow helps guide mindful breathing by providing prompts for when to inhal
 
 Breakout Game is a classic arcade experience where players control a paddle to bounce a ball and break bricks. The goal is to clear all bricks without letting the ball fall off the screen. As you progress, the game becomes more challenging with faster speeds and tougher brick layouts.
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/Breakout-Game)
-[![Difficulty: Hard](https://img.shields.io/badge/difficulty-hard-red)](https://github.com/asloberg/Breakout-Game)
+[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)
+[![Difficulty: Hard](https://img.shields.io/badge/difficulty-hard-red)](https://github.com/asloberg/mini-projects)
 
 ---
 
