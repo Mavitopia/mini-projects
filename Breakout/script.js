@@ -18,9 +18,6 @@ jQuery(() => {
   const c = canvas.getContext("2d");
   canvas.width = 800;
   canvas.height = 600;
-  if (window.innerWidth < 845) {
-    canvas.width = innerWidth;
-  }
 
   // Global score variable
   let score = 0;

@@ -159,20 +159,44 @@ button:active {
   #how-to-play {
     display: none;
   }
-
   #rule {
     display: none;
   }
-
   canvas {
-    width: 80%;
-    height: auto;
+    width: 500px;
+    height: 400px;
   }
-
   h1 {
     font-size: 5vw;
   }
 }
 
+@media (max-width: 530px) {
 
+  canvas {
+    width: 400px;
+    height: 300px;
+}
+  h1 {
+    font-size: 10vw;
+  }
+}
 
+@media (max-width: 450px) {
+  canvas {
+    width: 300px;
+    height: 200px;
+  }
+  h1 {
+    font-size: 10vw;
+  }
+}
+@media (max-width: 300px) {
+  canvas {
+    width: 200px;
+    height: 100px;
+  }
+  h1 {
+    font-size: 10vw;
+  }
+}
