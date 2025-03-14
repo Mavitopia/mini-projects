@@ -18,6 +18,9 @@ jQuery(() => {
   const c = canvas.getContext("2d");
   canvas.width = 800;
   canvas.height = 600;
+  if (window.innerWidth < 845) {
+    canvas.width = innerWidth;
+  }
 
   // Global score variable
   let score = 0;
@@ -35,10 +38,10 @@ jQuery(() => {
       // Randomize dx and dy within the lower speed range
       this.dx =
         (Math.random() * (maxSpeed - minSpeed) + minSpeed) *
-        (Math.random() > 1 ? 1 : -1);
+        (Math.random() > 0.5 ? 1 : -1);
       this.dy =
         (Math.random() * (maxSpeed - minSpeed) + minSpeed) *
-        (Math.random() > 1 ? 1 : -1);
+        (Math.random() > 0.5 ? 1 : -1);
 
       // Ensure the ball always starts moving upward (dy negative)
       if (this.dy > 0) {
@@ -96,6 +99,28 @@ jQuery(() => {
 
   // ********** FUNCTIONS **********
 
+  function restart() {
+    // Reinitialize the ball position and speed
+    const minSpeed = 1;
+    const maxSpeed = 1.5;
+    ball.x = canvas.width / 2;
+    ball.y = canvas.height / 2;
+    ball.dx = (Math.random() * (maxSpeed - minSpeed) + minSpeed) * (Math.random() > 0.5 ? 1 : -1);
+    ball.dy = (Math.random() * (maxSpeed - minSpeed) + minSpeed) * (Math.random() > 0.5 ? 1 : -1);
+
+    // Reinitialize the player platform position
+    playerPlatform.x = canvas.width / 2 - playerPlatform.width / 2;
+
+    // Reinitialize score and reset the walls
+    score = 0;
+    initializeWalls();
+
+    // Reset game running state and start the game loop
+    gameRunning = true;
+    gameLoop();
+  }
+
+
   function initializeWalls() {
     const wallWidth = 80;
     const wallHeight = 20;
@@ -147,7 +172,12 @@ jQuery(() => {
       ball.y + ball.radius > playerPlatform.y &&
       ball.y - ball.radius < playerPlatform.y + playerPlatform.height
     ) {
-      ball.dy = -ball.dy;
+
+      let hitPoint = (ball.x - playerPlatform.x) / playerPlatform.width;
+      let angleView = (hitPoint - 0.5) * (Math.PI / 3);
+      let speed = Math.sqrt(ball.dx ** 2 + ball.dy ** 2);
+      ball.dx = speed * Math.sin(angleView);
+      ball.dy = -Math.abs(speed * Math.cos(angleView)); // Ensure it always moves up
     }
   }
 
@@ -220,12 +250,36 @@ jQuery(() => {
     }
   });
   //check if player wants a restart
-  addEventListener("click", () => {
-    if (gameRunning === false) {
-      gameRunning = true;
-      window.location.reload();
+  canvas.addEventListener("click", () => {
+    if (!gameRunning) {
+      restart();
     }
   });
+
+  // ********** MOBILE TOUCH CONTROLS **********
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+  }
+
+  function handleTouchMove(event) {
+    touchEndX = event.touches[0].clientX;
+    const deltaX = touchEndX - touchStartX;
+    if (Math.abs(deltaX) > 30) {
+      if (deltaX > 0) {
+        playerPlatform.move("right");
+      } else {
+        playerPlatform.move("left");
+      }
+      touchStartX = touchEndX;
+    }
+  }
+
+  canvas.addEventListener("touchstart", handleTouchStart);
+  canvas.addEventListener("touchmove", handleTouchMove);
+
 
   // Start the game loop
   gameLoop();

@@ -92,7 +92,7 @@ button:active {
 #how-to-play button:hover {
   background: linear-gradient(135deg, #222, #444);
   color: #ffc107;
-  box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
 }
 
 #how-to-play button:active {
@@ -124,3 +124,106 @@ button:active {
 .moving-div-right {
   animation: slideRight 1s ease forwards;
 }
+
+@media (max-width: 1430px) {
+  #how-to-play {
+    width: 300px;
+  }
+  canvas {
+    width: 700px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 1135px) {
+  #how-to-play {
+    width: 200px;
+  }
+  canvas {
+    width: 600px;
+    height: 400px;
+  }
+  #how-to-play h2 {
+    font-size: 30px;
+  }
+  #how-to-play p {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (max-width: 845px) {
+
+  #how-to-play {
+    display: none;
+  }
+
+  #rule {
+    display: none;
+  }
+
+
+
+
+  h1 {
+    font-size: 5vw;
+  }
+}
+#instructions {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  z-index: 10;
+  display: none; /* Hide instructions by default */
+}
+
+#instructions h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#instructions p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 845px) {
+
+  #instructions {
+    display: block;
+    width: 90%;
+    top: 10px;
+    padding: 15px;
+  }
+
+  #instructions h2 {
+    font-size: 20px;
+  }
+
+  #instructions p {
+    font-size: 16px;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 846px) {
+  #instructions {
+    display: none;
+  }
+}
+
+
+
