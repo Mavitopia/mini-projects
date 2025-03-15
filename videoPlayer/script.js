@@ -66,13 +66,13 @@ jQuery(function() {
     })
 
     //*********** Setting Func *************\\
-    $('#settings-toggle').on('click', function() {
-        const $settingContent = $('#settings-menu');
-        const $settingButtonIcon = $(this).find('i');
+    const $settingContent = $('#settings-menu');
 
+    $('#settings-toggle').on('click', function() {
+        //dropdown 10px below the setting btn
+        const $settingButtonIcon = $(this).find('i');
         const buttonPosition = $(this).offset();
 
-        //dropdown 10px below the setting btn
         $settingContent.css({
             top: buttonPosition.top + $(this).outerHeight() + 10 + 'px',
             left: buttonPosition.left + 'px'
@@ -90,4 +90,16 @@ jQuery(function() {
     $('#playbackRate').on('change', function() {
         $video[0].playbackRate = $(this).val();
     });
+
+    //make the dropdown disappear when clicking somewhere else
+    $(document).on("click", function (event) {
+        if (
+            $settingContent.hasClass('active') &&
+            !$(event.target).closest('#settings-menu, #settings-toggle').length
+        ) {
+            $settingContent.removeClass('active');
+            $('#settings-toggle i').css('color', '');
+        }
+    });
+
 });
