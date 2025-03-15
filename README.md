@@ -46,7 +46,8 @@ The **Custom Video Player** is an advanced, feature-rich media player built with
 ✅ **Fullscreen Mode** – Expand the video to full screen.  
 ✅ **Playback Speed Control** – Adjust the speed to your preference.  
 ✅ **Progress Bar Sync** – Seek and track video progress smoothly.   
-✅ **Responsive Design**
+✅ **Responsive Design**   
+Note: Better experience in landscape mode on mobile.
 
 [![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
 [![Difficulty: Medium to Hard](https://img.shields.io/badge/difficulty-medium--hard-orange)](https://github.com/asloberg/mini-projects)  
