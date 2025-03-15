@@ -13,18 +13,29 @@ jQuery(function() {
         $video[0].currentTime = ($progress.val() / 100) * $video[0].duration;
     })
 
-    //*********** Play/Pause Func *************\\
+//*********** Play/Pause Func *************\\
     const $playPauseBtn = $('.play-pause-button');
 
     function pauseVideo() {
         $video[0].pause();
         $playPauseBtn.html('<i class="bi bi-play-fill"></i>');
     }
+    function playVideo() {
+        $video[0].play();
+        $playPauseBtn.html('<i class="bi bi-pause-fill"></i>');
+    }
+
+    $video.on("click", function () {
+        if ($video[0].paused) {
+            playVideo();
+        } else {
+            pauseVideo();
+        }
+    })
 
     $playPauseBtn.on("click", function() {
         if ($video[0].paused) {
-            $video[0].play();
-            $playPauseBtn.html('<i class="bi bi-pause-fill"></i>');
+            playVideo();
         } else {
             pauseVideo();
         }
