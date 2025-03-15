@@ -51,10 +51,6 @@ jQuery(function() {
             document.documentElement.requestFullscreen().then();
             $videoDivContainer.removeClass("player-container").addClass("fullscreen-container");
         }
-        // test
-        if (window.matchMedia("(max-width: 768px)").matches && screen.orientation?.lock) {
-            screen.orientation.lock("landscape-primary").catch(() => {});
-        }
 
     })
 
