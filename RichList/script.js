@@ -45,6 +45,7 @@ async function fetchUser() {
 function generateUserMoney() {
     const userMoneyInt = Math.trunc((Math.random() * 1_000_000) + 100_000);
     const userMoneyDec = (Math.random() * 100).toFixed(2);
+    formatMoney(userMoneyInt);
     return parseFloat(`${userMoneyInt}.${userMoneyDec}`);
 }
 
