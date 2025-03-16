@@ -53,6 +53,23 @@ The **Custom Video Player** is an advanced, feature-rich media player built with
 
 ---
 
+### RichList Manager 💰📊
+The **Wealth Tracker** app allows users to generate random individuals with assigned wealth values. Users can **double their money, filter millionaires, sort by the richest, and calculate total wealth** dynamically.
+
+#### Features
+✅ **Random User Generation** – Fetches names from an API.  
+✅ **Wealth Calculation** – Generates random wealth amounts.  
+✅ **Double Wealth Feature** – Increases wealth with one click.  
+✅ **Filter Millionaires** – Displays only users with over $1M.  
+✅ **Sort by Richest** – Orders users from highest to lowest wealth.  
+✅ **Total Wealth Calculation** – Displays the sum of all users' wealth.  
+✅ **Responsive Design**
+
+[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
+[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
+
+---
+
 ## Installation  
 Note: Better experience in landscape mode on mobile.   
 1. Clone the repository:  
