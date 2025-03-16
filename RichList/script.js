@@ -61,7 +61,7 @@ function doubleMoney() {
 }
 
 function formatMoney(number) {
-    return `$${number.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return `$${number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 }
 
 function onlyShowMillionaires() {
