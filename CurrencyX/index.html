@@ -2,9 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900">
+<div class="container mx-auto p-4">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="p-6">
+            <h2 class="text-xl font-semibold text-center">Currency Exchange</h2>
+            <form>
+                <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
+                <input type="number" id="amount" class="mt-1 block w-full p-2 border rounded-md" placeholder="Enter amount">
 
+                <label for="from" class="block mt-4 text-sm font-medium text-gray-700">From:</label>
+                <select id="from" class="block w-full p-2 border rounded-md">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="BRL">BRL - Brazilian Real</option>
+                    <option value="RUB">RUB - Russian Ruble</option>
+                    <option value="ZAR">ZAR - South African Rand</option>
+                    <option value="SGD">SGD - Singapore Dollar</option>
+                    <option value="HKD">HKD - Hong Kong Dollar</option>
+                    <option value="NZD">NZD - New Zealand Dollar</option>
+                    <option value="MXN">MXN - Mexican Peso</option>
+                    <option value="SEK">SEK - Swedish Krona</option>
+                    <option value="NOK">NOK - Norwegian Krone</option>
+                    <option value="KRW">KRW - South Korean Won</option>
+                    <option value="TRY">TRY - Turkish Lira</option>
+                </select>
+
+                <label for="to" class="block mt-4 text-sm font-medium text-gray-700">To:</label>
+                <select id="to" class="block w-full p-2 border rounded-md">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="BRL">BRL - Brazilian Real</option>
+                    <option value="RUB">RUB - Russian Ruble</option>
+                    <option value="ZAR">ZAR - South African Rand</option>
+                    <option value="SGD">SGD - Singapore Dollar</option>
+                    <option value="HKD">HKD - Hong Kong Dollar</option>
+                    <option value="NZD">NZD - New Zealand Dollar</option>
+                    <option value="MXN">MXN - Mexican Peso</option>
+                    <option value="SEK">SEK - Swedish Krona</option>
+                    <option value="NOK">NOK - Norwegian Krone</option>
+                    <option value="KRW">KRW - South Korean Won</option>
+                    <option value="TRY">TRY - Turkish Lira</option>
+                </select>
+
+                <button type="button" class="w-full mt-4 bg-blue-500 text-white py-2 rounded-md convert-button">Convert</button>
+            </form>
+            <div class="mt-4 text-center">
+                <p class="text-lg font-semibold">Converted Amount:</p>
+                <p id="convertedAmount" class="text-2xl font-bold text-green-500">-</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
