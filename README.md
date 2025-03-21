@@ -70,6 +70,22 @@ The **Wealth Tracker** app allows users to generate random individuals with assi
 
 ---
 
+# CurrencyX
+CurrencyX is a simple, easy-to-use web application that lets users convert one currency to another   
+with live exchange rates. Users can input an amount, select the currencies they want to convert,   
+and get the converted amount instantly.   
+
+#### Features
+✅ **Real-Time Exchange Rates** – Get the latest exchange rates.  
+✅ **Currency Conversion** – Convert between multiple currencies with ease.  
+✅ **Simple UI** – Minimal, clean, and user-friendly interface.  
+✅ **Responsive Design** – Works seamlessly on both desktop and mobile devices.
+
+[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/currencyx)  
+[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/currencyx)
+
+---
+
 ## Installation  
 Note: Better experience in landscape mode on mobile.   
 1. Clone the repository:  
