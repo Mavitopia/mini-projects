@@ -70,7 +70,7 @@ The **Wealth Tracker** app allows users to generate random individuals with assi
 
 ---
 
-# CurrencyX
+### CurrencyX
 CurrencyX is a simple, easy-to-use web application that lets users convert one currency to another   
 with live exchange rates. Users can input an amount, select the currencies they want to convert,   
 and get the converted amount instantly.   
