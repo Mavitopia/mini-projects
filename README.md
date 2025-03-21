@@ -81,8 +81,8 @@ and get the converted amount instantly.
 ✅ **Simple UI** – Minimal, clean, and user-friendly interface.  
 ✅ **Responsive Design** – Works seamlessly on both desktop and mobile devices.
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/currencyx)  
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/currencyx)
+[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
+[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
