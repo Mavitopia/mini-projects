@@ -14,10 +14,10 @@
             <h2 class="text-xl font-semibold text-center">Currency Exchange</h2>
             <form>
                 <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
-                <input type="number" id="amount" class="mt-1 block w-full p-2 border rounded-md" placeholder="Enter amount">
+                <input type="number" id="amount" class="mt-1 block w-full p-2 border rounded-md number-amount" placeholder="Enter amount">
 
                 <label for="from" class="block mt-4 text-sm font-medium text-gray-700">From:</label>
-                <select id="from" class="block w-full p-2 border rounded-md">
+                <select id="from" class="block w-full p-2 border rounded-md currency-from">
                     <option value="USD">USD - US Dollar</option>
                     <option value="EUR">EUR - Euro</option>
                     <option value="GBP">GBP - British Pound</option>
@@ -41,7 +41,7 @@
                 </select>
 
                 <label for="to" class="block mt-4 text-sm font-medium text-gray-700">To:</label>
-                <select id="to" class="block w-full p-2 border rounded-md">
+                <select id="to" class="block w-full p-2 border rounded-md currency-to">
                     <option value="USD">USD - US Dollar</option>
                     <option value="EUR">EUR - Euro</option>
                     <option value="GBP">GBP - British Pound</option>
