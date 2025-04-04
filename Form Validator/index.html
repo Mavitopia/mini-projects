@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validator</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <div class="logo-icon"></div>
+          <div class="logo-text">FORM VALIDATOR</div>
+        </div>
+        <h2>Create your account</h2>
+        <p>Complete all fields to get started</p>
+      </div>
+
+      <form class="form" id="form">
+        <div class="form-control">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Create a username" />
+          <small class="username-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="Enter your email" />
+          <small class="email-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+          />
+          <small class="password-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="password2">Confirm Password</label>
+          <input
+            type="password"
+            id="password2"
+            placeholder="Confirm your password"
+          />
+          <small class="password2-msg"></small>
+        </div>
+
+        <div class="form-info">
+          By signing up, you confirm that you've read and accepted our
+          <a class="term-link" style="cursor: pointer">Terms of Service</a> and
+          <a class="term-link" style="cursor: pointer">Privacy Policy</a>.
+        </div>
+
+        <button type="submit" id="button-submit">Submit</button>
+      </form>
+    </div>
+    <div id="term-of-service" class="hidden">
+      <div id="close-term">X</div>
+      <h2>Terms of Service</h2>
+      <p>
+        1. Use of Service You agree to use this website only for lawful
+        purposes. You must not use our platform in a way that could harm,
+        disable, or overburden our services or interfere with other users.<br /><br />
+        2.Account Responsibility You are responsible for maintaining the
+        confidentiality of your account and password. Any activity under your
+        account is your responsibility.<br /><br />
+        3. User Content By posting content on this website, you grant us a
+        non-exclusive, royalty-free license to use, display, and distribute that
+        content in connection with our services.
+      </p>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
