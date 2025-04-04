@@ -86,6 +86,18 @@ and get the converted amount instantly.
 
 ---
 
+###ExpenseTracker
+Expense Tracker is a simple, easy-to-use web application that lets users to track their expenses & incomes
+
+#### Features
+✅ **Track expenses and incomes** – keep track of your money  
+✅ **Simple UI** – Minimal, clean, and user-friendly interface.  
+✅ **Responsive Design** – Works seamlessly on both desktop and mobile devices.
+
+[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
+[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
+
+---
 ## Installation  
 Note: Better experience in landscape mode on mobile.   
 1. Clone the repository:  
