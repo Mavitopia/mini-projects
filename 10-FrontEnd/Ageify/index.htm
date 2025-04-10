@@ -236,7 +236,7 @@
 
       function calculateAge() {
         const day = parseInt(dayInput.value, 10);
-        const month = parseInt(monthInput.value, 10) - 1;
+        const month = parseInt(monthInput.value, 10) - 1; // Month is 0-indexed
         const year = parseInt(yearInput.value, 10);
 
         if (isNaN(day) || isNaN(month) || isNaN(year)) {
@@ -271,9 +271,14 @@
           months += 12;
         }
 
+        // Calculate total months lived
+        const totalMonths = years * 12 + months;
+        const totalDays = years * 365 + months * 30 + days;
+        // Display the results
+
         document.querySelectorAll(".value")[0].textContent = years;
-        document.querySelectorAll(".value")[1].textContent = months;
-        document.querySelectorAll(".value")[2].textContent = days;
+        document.querySelectorAll(".value")[1].textContent = totalMonths;
+        document.querySelectorAll(".value")[2].textContent = totalDays;
       }
     </script>
   </body>
