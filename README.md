@@ -138,11 +138,9 @@ Ageify is a web application that predicts a person's age based on their inputs
 
 ### Features
 
-✅ **Name-Age Prediction** – Estimates age based on entered name using the Agify.io API.   
-✅ **Instant Results** – Shows predicted age immediately upon submission.   
-✅ **Statistical Insights** – Provides data-driven age estimates from name databases.   
+✅ **Instant Results** – Shows predicted age immediately upon submission.    
 ✅ **Simple UI** – Clean, user-friendly interface for easy interaction.   
-✅ **Responsive Design** – Works seamlessly across devices.   
+✅ **Responsive Design** – Works seamlessly across devices. 
 
 [![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
 [![Difficulty: Easy](https://img.shields.io/badge/difficulty-easy-lightgreen)](https://github.com/asloberg/mini-projects)
