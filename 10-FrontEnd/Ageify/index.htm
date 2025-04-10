@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ageify</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f5f5f7;
+      }
+
+      .container {
+        background-color: white;
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem;
+        border-bottom-right-radius: 5rem;
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .input-part {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        color: #777;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      input {
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #8a6fff;
+      }
+
+      input::-webkit-inner-spin-button,
+      input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
+
+      .button-container {
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      button {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: #8a6fff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0.25rem 1rem rgba(138, 111, 255, 0.3);
+      }
+
+      .show-result {
+        padding-left: 0.5rem;
+      }
+
+      .result-row {
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        font-size: 60px;
+        font-weight: 800;
+        color: #222;
+        display: flex;
+        align-items: baseline;
+      }
+
+      .value {
+        color: #8a6fff;
+        margin-right: 0.5rem;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 1.5rem;
+          border-bottom-right-radius: 3rem;
+        }
+
+        .button-container {
+          right: 1.5rem;
+        }
+
+        button {
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+
+        h2 {
+          font-size: 50px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .input-part {
+          grid-template-columns: 1fr;
+        }
+
+        .button-container {
+          position: relative;
+          right: auto;
+          top: auto;
+          transform: none;
+          display: flex;
+          justify-content: center;
+          margin: -1rem 0 2rem;
+        }
+        h2 {
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-part">
+        <div class="input-group">
+          <label for="day">Day</label>
+          <input
+            type="number"
+            id="day"
+            name="day"
+            min="1"
+            max="31"
+            placeholder="DD"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="month">Month</label>
+          <input
+            type="number"
+            id="month"
+            name="month"
+            min="1"
+            max="12"
+            placeholder="MM"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="year">Year</label>
+          <input
+            type="number"
+            id="year"
+            name="year"
+            min="1900"
+            max="2100"
+            placeholder="YYYY"
+          />
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 6v12M18 12H6"
+              stroke="white"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="show-result">
+        <div class="result-row">
+          <h2><span class="value">--</span><span class="unit">years</span></h2>
+        </div>
+        <div class="result-row">
+          <h2><span class="value">--</span><span class="unit">months</span></h2>
+        </div>
+        <div class="result-row">
+          <h2><span class="value">--</span><span class="unit">days</span></h2>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const dayInput = document.getElementById("day");
+      const monthInput = document.getElementById("month");
+      const yearInput = document.getElementById("year");
+      const button = document.querySelector("button");
+      button.addEventListener("click", calculateAge);
+
+      function calculateAge() {
+        const day = parseInt(dayInput.value, 10);
+        const month = parseInt(monthInput.value, 10) - 1;
+        const year = parseInt(yearInput.value, 10);
+
+        if (isNaN(day) || isNaN(month) || isNaN(year)) {
+          alert("Please enter a valid date.");
+          return;
+        }
+
+        const birthDate = new Date(year, month, day);
+        const today = new Date();
+
+        if (birthDate > today) {
+          alert("The birth date cannot be in the future.");
+          return;
+        }
+
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
+
+        if (days < 0) {
+          months -= 1;
+          const previousMonth = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            0
+          );
+          days += previousMonth.getDate();
+        }
+
+        if (months < 0) {
+          years -= 1;
+          months += 12;
+        }
+
+        document.querySelectorAll(".value")[0].textContent = years;
+        document.querySelectorAll(".value")[1].textContent = months;
+        document.querySelectorAll(".value")[2].textContent = days;
+      }
+    </script>
+  </body>
+</html>

@@ -1,130 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Folder Navigator</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+      }
 
+      body {
+        background-color: #f8f9fa;
+        color: #333;
+        overflow-x: hidden;
+        padding-top: 80px; /* Adjust for fixed header */
+      }
+
+      header {
+        padding: 1.5rem;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        height: 80px; /* Fixed height for header */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.25rem;
+      }
+
+      .subtitle {
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+
+      .folders-container {
+        height: calc(100vh - 80px); /* Account for header */
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        position: relative;
+      }
+
+      .folder {
+        height: calc(100vh - 80px); /* Account for header */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        scroll-snap-align: start;
+        position: relative;
+        padding: 1rem;
+        transition: transform 0.5s ease;
+      }
+
+      .folder-content {
+        max-width: 900px;
+        width: 90%;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transform: translateY(0);
+        transition: transform 0.5s ease, box-shadow 0.3s ease;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .folder-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .folder-header {
+        padding: 1.5rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .folder-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px; /* Prevent shrinking */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+      }
+
+      .folder-info {
+        flex: 1;
+      }
+
+      .folder-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .folder-description {
+        color: #6c757d;
+        line-height: 1.5;
+      }
+
+      .folder-body {
+        padding: 1rem 2rem 2rem;
+      }
+
+      .project-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      .project-item {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+
+      .project-item:hover {
+        background: #e9ecef;
+        transform: translateY(-3px);
+        border-color: #dee2e6;
+      }
+
+      .project-name {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #212529;
+      }
+
+      .project-meta {
+        font-size: 0.85rem;
+        color: #6c757d;
+      }
+
+      .folder-navigation {
+        position: fixed;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        z-index: 50;
+      }
+
+      .indicator-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(222, 226, 230, 0.7);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .indicator-dot:hover {
+        transform: scale(1.2);
+      }
+
+      .indicator-dot.active {
+        background: #333;
+        transform: scale(1.2);
+      }
+
+      .navigation-arrows {
+        position: absolute;
+        width: 100%;
+        bottom: 2rem;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .scroll-hint {
+        animation: pulse 2s infinite;
+        opacity: 0.7;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        pointer-events: auto;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .scroll-hint:hover {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+      }
+
+      /* JS folder specific styles */
+      .js-folder .folder-icon {
+        background: #f7df1e;
+      }
+
+      /* Frontend folder specific styles */
+      .frontend-folder .folder-icon {
+        background: linear-gradient(135deg, #61dafb, #764abc);
+      }
+
+      /* Badge styles for project items */
+      .project-badges {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 20px;
+        display: inline-block;
+        font-weight: 600;
+      }
+
+      .badge-blue {
+        background-color: rgba(13, 110, 253, 0.1);
+        color: #0d6efd;
+      }
+
+      .badge-green {
+        background-color: rgba(25, 135, 84, 0.1);
+        color: #198754;
+      }
+
+      .badge-orange {
+        background-color: rgba(255, 145, 0, 0.1);
+        color: #ff9100;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .project-list {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
         body {
-            background-color: #121212;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
+          padding-top: 70px;
         }
 
         header {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: linear-gradient(135deg, #ff8a00, #da1b60);
-            border-radius: 10px;
+          height: 70px;
+          padding: 1rem;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
+        h1 {
+          font-size: 1.5rem;
         }
 
-        .project {
-            background: #1e1e1e;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 6px 15px rgba(255, 140, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .folders-container,
+        .folder {
+          height: calc(100vh - 70px);
         }
 
-        .project:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.5);
+        .folder-header {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.25rem 1rem;
+          gap: 1rem;
         }
 
-        .project h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
+        .folder-navigation {
+          right: 0.5rem;
         }
 
-        .project p {
-            font-size: 16px;
-            opacity: 0.8;
+        .project-list {
+          grid-template-columns: 1fr;
         }
 
-        .project a {
-            display: inline-block;
-            text-decoration: none;
-            font-weight: bold;
-            color: #ffffff;
-            background: #ff8a00;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin-top: 10px;
-            transition: background 0.3s ease;
+        .folder-content {
+          width: 95%;
         }
 
-        .project a:hover {
-            background: #da1b60;
+        .folder-icon {
+          width: 50px;
+          height: 50px;
+          min-width: 50px;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        .folder-title {
+          font-size: 1.3rem;
         }
+      }
+
+      @media (max-width: 480px) {
+        .folder {
+          padding: 1rem 0.5rem;
+        }
+
+        .folder-body {
+          padding: 1rem;
+        }
+
+        .project-item {
+          padding: 1.25rem;
+        }
+      }
+
+      /* Utility to hide scroll arrows when not needed */
+      .hide-arrow {
+        display: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header>
+      <h1>Project Explorer</h1>
+      <p class="subtitle">Scroll to navigate between project folders</p>
+    </header>
 
-<header>🚀 Welcome to My Projects 🚀</header>
+    <div class="folder-navigation">
+      <div class="indicator-dot active" data-target="js-folder"></div>
+      <div class="indicator-dot" data-target="frontend-folder"></div>
+    </div>
 
-<div class="container">
-    <div class="project">
-        <h2>BreatheFlow</h2>
-        <p>Mindful breathing guide to help with relaxation, focus, and stress relief.</p>
-        <a href="./BreatheFlow-Proj/index.html">View Project</a>
-    </div>
-    <div class="project">
-        <h2>Breakout</h2>
-        <p>Classic arcade-style game where you bounce a ball to break bricks.</p>
-        <a href="./Breakout/index.html">View Project</a>
-    </div>
-    <div class="project">
-        <h2>Custom Video Player</h2>
-        <p>Advanced media player with intuitive controls and playback features.</p>
-        <a href="./VideoPlayer/index.html">View Project</a>
-    </div>
-    <div class="project">
-        <h2>RichList</h2>
-        <p>Generate random people with wealth, double their money, and sort by richest.</p>
-        <a href="./RichList/index.html">View Project</a>
-    </div>
-    <div class="project">
-        <h2>CurrencyX</h2>
-        <p>CurrencyX is a simple, easy-to-use web application that lets users convert one currency to another
-            with live exchange rates.</p>
-        <a href="./CurrencyX/index.html">View Project</a>
-    </div>
-        <div class="project">
-        <h2>ExpenseTracker</h2>
-        <p>Expense Tracker is a simple, easy-to-use web application that lets users to track their expenses & incomes</p>
-        <a href="./Expense%20Tracker/index.html">View Project</a>
-    </div>
-</div>
-    <div class="project">
-    <h2>Form Validator</h2>
-    <p>A modern, responsive user registration form with real-time input validation. It features a stylish UI with animated gradients and custom error handling for username, email, and password fields. Includes a pop-up Terms of Service modal for a complete user experience.</p>
-    <a href="./Form%20Validator/">View Project</a>
-    </div>
-</div>
+    <div class="folders-container">
+      <section class="folder js-folder" id="js-folder">
+        <div class="folder-content">
+          <div class="folder-header">
+            <div class="folder-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#ffe082"
+                  d="M15.879,44C13.745,44,12,42.255,12,40.121V15.879C12,13.745,13.745,12,15.879,12h24.242	C42.255,12,44,13.745,44,15.879v24.242C44,42.255,42.255,44,40.121,44H15.879z"
+                ></path>
+                <path
+                  fill="none"
+                  stroke="#18193f"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="3"
+                  d="M7.5,28.559V11.5	c0-2.2,1.8-4,4-4h25c2.2,0,4,1.8,4,4v1.245"
+                ></path>
+                <path
+                  fill="none"
+                  stroke="#18193f"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="3"
+                  d="M40.5,18.617V36.5	c0,2.2-1.8,4-4,4h-25c-2.2,0-4-1.8-4-4v-1.755"
+                ></path>
+                <path
+                  fill="#18193f"
+                  d="M29.271,32.389c0.629,1.026,1.312,2.009,2.758,2.009c1.215,0,1.853-0.607,1.853-1.446	c0-1.005-0.659-1.362-1.996-1.946l-0.733-0.314c-2.115-0.901-3.522-2.031-3.522-4.418c0-2.199,1.675-3.873,4.294-3.873	c1.864,0,3.204,0.649,4.17,2.348l-2.283,1.466c-0.503-0.901-1.045-1.256-1.887-1.256c-0.859,0-1.403,0.545-1.403,1.256	c0,0.88,0.545,1.236,1.803,1.78l0.733,0.314c2.492,1.067,3.898,2.156,3.898,4.605c0,2.64-2.074,4.086-4.859,4.086	c-2.723,0-4.27-1.373-5.131-3.074L29.271,32.389z"
+                ></path>
+                <path
+                  fill="#18193f"
+                  d="M18.623,32.464c0.466,0.827,1.176,1.462,2.195,1.462c0.975,0,1.537-0.381,1.537-1.864V22.4h3.074	v10.129c0,3.072-1.801,4.471-4.431,4.471c-2.376,0-4.091-1.593-4.79-3.074L18.623,32.464z"
+                ></path>
+              </svg>
+            </div>
+            <div class="folder-info">
+              <h2 class="folder-title">JS-Proj</h2>
+              <p class="folder-description">
+                JavaScript projects made with JS in mind for training and
+                showcasing JavaScript skills.
+              </p>
+            </div>
+          </div>
+          <div class="folder-body">
+            <div class="project-list">
+              <div class="project-item">
+                <div class="project-name">Breakout</div>
+                <div class="project-meta">Canvas, Jquery, Game</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-orange">Medium</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-name">BreatheFlow</div>
+                <div class="project-meta">Jquery, Animation, Simple</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-blue">Easy</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-name">CurrencyX</div>
+                <div class="project-meta">Fetch, API</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-blue">Easy</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-name">ExpenseTracker</div>
+                <div class="project-meta">Simple</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-blue">Easy</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-name">FormValidator</div>
+                <div class="project-meta">Validation, Regex</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-orange">Medium</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-name">RichList</div>
+                <div class="project-meta">API, Simple</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-blue">Easy</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <div class="project-name">VideoPlayer</div>
+                <div class="project-meta">Jquery, Video player</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-orange">Medium</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-arrows">
+          <div class="scroll-hint js-scroll-down">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14"></path>
+              <path d="M19 12l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+      </section>
 
-</body>
+      <section class="folder frontend-folder" id="frontend-folder">
+        <div class="folder-content">
+          <div class="folder-header">
+            <div class="folder-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <div class="folder-info">
+              <h2 class="folder-title">10-FrontEnd</h2>
+              <p class="folder-description">
+                Projects for showcasing UI and front-end development skills with
+                modern designs and interactions.
+              </p>
+            </div>
+          </div>
+          <div class="folder-body">
+            <div class="project-list">
+              <div class="project-item">
+                <div class="project-name">Ageify</div>
+                <div class="project-meta">API, Name-Age Prediction</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-blue">Easy</span>
+                </div>
+              </div>
+              <!-- Placeholder for additional frontend projects -->
+              <div class="project-item">
+                <div class="project-name">Coming Soon</div>
+                <div class="project-meta">New projects in development</div>
+                <div class="project-badges">
+                  <span class="badge badge-orange">In Progress</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-arrows">
+          <div class="scroll-hint js-scroll-up">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 19V5"></path>
+              <path d="M5 12l7-7 7 7"></path>
+            </svg>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const foldersContainer = document.querySelector(".folders-container");
+        const indicatorDots = document.querySelectorAll(".indicator-dot");
+        const folders = document.querySelectorAll(".folder");
+        const scrollDownBtn = document.querySelector(".js-scroll-down");
+        const scrollUpBtn = document.querySelector(".js-scroll-up");
+
+        // Function to update navigation arrow visibility
+        function updateArrowVisibility() {
+          const currentSection = getCurrentSection();
+
+          // Hide all arrows first
+          document.querySelectorAll(".scroll-hint").forEach((arrow) => {
+            arrow.style.display = "flex";
+          });
+
+          // Show/hide appropriate arrows based on current section
+          if (currentSection === 0) {
+            // First section - show only down arrow
+            scrollUpBtn.style.display = "none";
+          } else if (currentSection === folders.length - 1) {
+            // Last section - show only up arrow
+            scrollDownBtn.style.display = "none";
+          }
+        }
+
+        // Update arrows on page load
+        updateArrowVisibility();
+
+        // Get current visible section index
+        function getCurrentSection() {
+          const scrollPosition = foldersContainer.scrollTop;
+          const windowHeight = window.innerHeight;
+
+          for (let i = 0; i < folders.length; i++) {
+            const folder = folders[i];
+            const folderTop = folder.offsetTop;
+            const folderHeight = folder.offsetHeight;
+
+            if (
+              scrollPosition >= folderTop - windowHeight / 3 &&
+              scrollPosition < folderTop + folderHeight - windowHeight / 3
+            ) {
+              return i;
+            }
+          }
+
+          return 0; // Default to first section
+        }
+
+        // Function to update active indicator
+        function updateActiveIndicator() {
+          const currentIndex = getCurrentSection();
+
+          // Update indicator dots
+          indicatorDots.forEach((dot, index) => {
+            if (index === currentIndex) {
+              dot.classList.add("active");
+            } else {
+              dot.classList.remove("active");
+            }
+          });
+
+          // Update arrow visibility
+          updateArrowVisibility();
+        }
+
+        // Track scrolling in the folders container
+        foldersContainer.addEventListener("scroll", function () {
+          updateActiveIndicator();
+        });
+
+        // Handle indicator dot clicks
+        indicatorDots.forEach((dot) => {
+          dot.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            document
+              .getElementById(targetId)
+              .scrollIntoView({ behavior: "smooth" });
+          });
+        });
+
+        // Handle arrow button clicks
+        if (scrollDownBtn) {
+          scrollDownBtn.addEventListener("click", function () {
+            const currentIndex = getCurrentSection();
+            if (currentIndex < folders.length - 1) {
+              folders[currentIndex + 1].scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        }
+
+        if (scrollUpBtn) {
+          scrollUpBtn.addEventListener("click", function () {
+            const currentIndex = getCurrentSection();
+            if (currentIndex > 0) {
+              folders[currentIndex - 1].scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        }
+
+        // Handle project item clicks
+        const projectItems = document.querySelectorAll(".project-item");
+        projectItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            if (
+              this.querySelector(".project-name").textContent === "Coming Soon"
+            ) {
+              return;
+            }
+
+            const projectName = String(
+              this.querySelector(".project-name").textContent
+            );
+
+            if (projectName.toLowerCase() === "breakout") {
+              window.open("./JS-Proj/Breakout/index.html");
+            } else if (projectName.toLowerCase() === "breatheflow") {
+              window.open("./JS-Proj/BreatheFlow-Proj/index.html");
+            } else if (projectName.toLowerCase() === "currencyx") {
+              window.open("./JS-Proj/CurrencyX/index.html");
+            } else if (projectName.toLowerCase() === "expensetracker") {
+              window.open("./JS-Proj/Expense Tracker/index.html");
+            } else if (projectName.toLowerCase() === "formvalidator") {
+              window.open("./JS-Proj/Form Validator/index.html");
+            } else if (projectName.toLowerCase() === "richlist") {
+              window.open("./JS-Proj/RichList/index.html");
+            } else if (projectName.toLowerCase() === "videoplayer") {
+              window.open("./JS-Proj/VideoPlayer/index.html");
+            } else if (projectName.toLowerCase() === "ageify") {
+              window.open("./10-FrontEnd/Ageify/index.htm");
+            }
+          });
+        });
+
+        // Check if running on mobile
+        function isMobile() {
+          return window.innerWidth <= 768;
+        }
+
+        // Handle resize events
+        window.addEventListener("resize", function () {
+          updateActiveIndicator();
+        });
+
+        // Initial update
+        updateActiveIndicator();
+      });
+    </script>
+  </body>
 </html>
