@@ -134,11 +134,10 @@ This web app features a user registration form with real-time input validation, 
 
 ### Ageify
 
-Ageify is a web application that predicts a person's age based on their inputs
+Ageify is a web application that shows how many days, months, years a person's lived
 
 ### Features
 
-✅ **Instant Results** – Shows predicted age immediately upon submission.    
 ✅ **Simple UI** – Clean, user-friendly interface for easy interaction.   
 ✅ **Responsive Design** – Works seamlessly across devices. 
 
