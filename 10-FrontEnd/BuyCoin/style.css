@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #293241;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    padding-bottom: 40px;
+    color: #293241;
+    background: none;
+    animation: colorChange 6s infinite;
+}
+
+@keyframes colorChange {
+    0% { color: #FFB4A2; }
+    20% { color: #BDE0FE; }
+    40% { color: #A2D2FF; }
+    60% { color: #FFCDB2; }
+    100% { color: #FFB4A2; }
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 25px;
+    border: #293241 solid 1px;
+    height: 250px;
+    width: 550px;
+}
+
+.nav-bar {
+    padding: 10px;
+    display: flex;
+    border-bottom: 1px solid #293241;
+}
+
+.buy, .sell, .transformation {
+    padding-right: 15px;
+}
+
+.content {
+    height: 209px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.submit {
+    align-self: flex-end;
+}
+
+label {
+    background-color: #ffffff;
+    position: absolute;
+    color: #293241;
+}
+
+#price-input,
+#amount-input,
+#type-select {
+    background-color: #ffffff;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #293241;
+    padding-left: 5px;
+    font-size: 16px;
+    color: #293241;
+}
+.price {
+    position: relative;
+}
+
+.amount {
+    position: relative;
+}
+
+.type {
+    position: relative;
+}
+
+.price label {
+    padding: 0 5px;
+    top: -8px;
+    left: 10px;
+}
+.amount label {
+    padding: 0 5px;
+    top: -8px;
+    left: 10px;
+}
+.type label {
+    padding: 0 5px;
+    top: -8px;
+    left: 10px;
+}
+
+button {
+    border: #293241 solid 1px;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #A2D2FF;
+    color: #293241;
+}
