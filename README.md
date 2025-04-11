@@ -23,8 +23,6 @@ BreatheFlow helps guide mindful breathing by providing prompts for when to inhal
 ✅ **Minimal UI** – Clean and distraction-free interface.  
 ✅ **Responsive Design**
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -39,8 +37,6 @@ Breakout Game is a classic arcade experience where players control a paddle to b
 ✅ **Score System** – Track your progress with points.  
 ✅ **Responsive Design**
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Hard](https://img.shields.io/badge/difficulty-hard-red)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -56,8 +52,6 @@ The **Custom Video Player** is an advanced, feature-rich media player built with
 ✅ **Progress Bar Sync** – Seek and track video progress smoothly.  
 ✅ **Responsive Design**
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Medium to Hard](https://img.shields.io/badge/difficulty-medium--hard-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -75,8 +69,6 @@ The **Wealth Tracker** app allows users to generate random individuals with assi
 ✅ **Total Wealth Calculation** – Displays the sum of all users' wealth.  
 ✅ **Responsive Design**
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -93,8 +85,6 @@ and get the converted amount instantly.
 ✅ **Simple UI** – Minimal, clean, and user-friendly interface.  
 ✅ **Responsive Design** – Works seamlessly on both desktop and mobile devices.
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -108,8 +98,6 @@ Expense Tracker is a simple, easy-to-use web application that lets users to trac
 ✅ **Simple UI** – Minimal, clean, and user-friendly interface.  
 ✅ **Responsive Design** – Works seamlessly on both desktop and mobile devices.
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -125,8 +113,6 @@ This web app features a user registration form with real-time input validation, 
 ✅ **Animated Gradients** – Stylish, modern UI design.  
 ✅ **Responsive Design** – Seamlessly adjusts to different screen sizes.
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Medium](https://img.shields.io/badge/difficulty-medium-orange)](https://github.com/asloberg/mini-projects)
 
 ---
 
@@ -141,8 +127,6 @@ Ageify is a web application that shows how many days, months, years a person's l
 ✅ **Simple UI** – Clean, user-friendly interface for easy interaction.   
 ✅ **Responsive Design** – Works seamlessly across devices. 
 
-[![Status: Completed](https://img.shields.io/badge/status-completed-brightgreen)](https://github.com/asloberg/mini-projects)  
-[![Difficulty: Easy](https://img.shields.io/badge/difficulty-easy-lightgreen)](https://github.com/asloberg/mini-projects)
 
 ---
 
