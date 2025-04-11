@@ -55,7 +55,7 @@ The **Custom Video Player** is an advanced, feature-rich media player built with
 
 ---
 
-### RichList Manager 💰📊
+### RichList Manager   
 
 The **Wealth Tracker** app allows users to generate random individuals with assigned wealth values. Users can **double their money, filter millionaires, sort by the richest, and calculate total wealth** dynamically.
 
