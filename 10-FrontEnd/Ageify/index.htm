@@ -245,10 +245,15 @@
         }
 
         const birthDate = new Date(year, month, day);
+        const minDate = new Date(1900, 1, 1);
         const today = new Date();
 
         if (birthDate > today) {
           alert("The birth date cannot be in the future.");
+          return;
+        }
+        if (birthDate < minDate) {
+          alert("the birth date cannot be this old");
           return;
         }
 
