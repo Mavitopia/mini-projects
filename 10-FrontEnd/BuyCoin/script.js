@@ -1,53 +1,91 @@
 // Variables
-const navbarbtns = document.querySelectorAll('p');
-const inputs = document.querySelectorAll('.inputs');
-const amount_input = document.querySelector('#amount-input');
-const price_input = document.querySelector('#price-input');
-const type_select = document.querySelector('#type-select');
-// We generate some random prices for the coins for testing purposes
-const bitcoin_price = Math.random() * (20000 - 10000) + 10000;
-const thether_price = Math.random() * (15000 - 10000) + 10000;
+const navbarButtons = document.querySelectorAll('p');
+const inputFields = document.querySelectorAll('.inputs');
+const amountInput = document.querySelector('#amount-input');
+const priceInput = document.querySelector('#price-input');
+const coinTypeSelect = document.querySelector('#type-select');
 
-//Functions
-navbarbtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+// Generate random prices for testing purposes
+const bitcoinPrice = Math.random() * (20000 - 10000) + 10000;
+const tetherPrice = Math.random() * (15000 - 10000) + 10000;
 
-        navbarbtns.forEach((btn) => {
+const buySection = document.querySelector('.first-p');
+const sellSection = document.querySelector('.second-p');
+const transferSection = document.querySelector('.third-p');
+
+const mainButton = document.querySelector('#purchase-btn');
+
+const contentDiv = document.querySelector('.content');
+
+// Functions
+navbarButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        navbarButtons.forEach((btn) => {
             btn.classList.remove('active');
-        })
-
-        btn.classList.add('active');
-    })
-})
-
-function getPrice_bitcoin(amount) {
-    const final_price = amount * bitcoin_price;
-    price_input.value = final_price.toFixed(2);
-}
-function getPrice_thether(amount) {
-    const final_price = amount * thether_price;
-    price_input.value = final_price.toFixed(2);
-}
-
-amount_input.addEventListener('input', () => {
-    const amount = amount_input.value;
-    getPrice_bitcoin(amount);
+        });
+        button.classList.add('active');
+    });
 });
 
-function check_which_coin() {
-    if (type_select.value == 'bitcoin') {
-        getPrice_bitcoin(amount_input.value);
-    } else if (type_select.value == 'thether') {
-        getPrice_thether(amount_input.value);
-    }
-
+function calculateBitcoinPrice(amount) {
+    const finalPrice = amount * bitcoinPrice;
+    priceInput.value = finalPrice.toFixed(2);
 }
 
+function calculateTetherPrice(amount) {
+    const finalPrice = amount * tetherPrice;
+    priceInput.value = finalPrice.toFixed(2);
+}
 
-type_select.addEventListener('change', () => {
-    check_which_coin();
+amountInput.addEventListener('input', () => {
+    const amount = amountInput.value;
+    calculateBitcoinPrice(amount);
+});
+
+function updatePriceBasedOnCoinType() {
+    if (coinTypeSelect.value === 'bitcoin') {
+        calculateBitcoinPrice(amountInput.value);
+    } else if (coinTypeSelect.value === 'tether') {
+        calculateTetherPrice(amountInput.value);
+    }
+}
+
+coinTypeSelect.addEventListener('change', () => {
+    updatePriceBasedOnCoinType();
+});
+
+let page = 'buy';
+
+// Listen for page navigation changes
+buySection.addEventListener('click', () => {
+    mainButton.textContent = 'PURCHASE';
+    mainButton.style.padding = '5px 5px';
+    page = 'buy';
+});
+
+sellSection.addEventListener('click', () => {
+    mainButton.textContent = 'SELL';
+    mainButton.style.padding = '5px 25.2px';
+    page = 'sell';
+});
+
+transferSection.addEventListener('click', () => {
+    mainButton.textContent = 'TRANSFER';
+    mainButton.style.padding = '5px 6.3px';
+    page = 'transfer';
+});
+
+mainButton.addEventListener('click', () => {
+    if (page === 'buy') {
+        alert(`You are buying ${amountInput.value} of ${coinTypeSelect.value} for ${priceInput.value}`);
+    } else if (page === 'sell') {
+        alert(`You are selling ${amountInput.value} of ${coinTypeSelect.value} for ${priceInput.value}`);
+    } else if (page === 'transfer') {
+        const destId = prompt("Enter the destination ID:");
+        alert(`You are transferring ${amountInput.value} of ${coinTypeSelect.value} to ID: ${destId}`);
+    }
 })
 
 
-//Call functions
-check_which_coin();
+// Call functions
+updatePriceBasedOnCoinType();
