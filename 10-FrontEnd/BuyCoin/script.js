@@ -71,7 +71,7 @@ sellSection.addEventListener('click', () => {
 
 transferSection.addEventListener('click', () => {
     mainButton.textContent = 'TRANSFER';
-    mainButton.style.padding = '5px 6.3px';
+    mainButton.style.padding = '5px 6.07px';
     page = 'transfer';
 });
 
