@@ -37,14 +37,11 @@ h1 {
 }
 
 .nav-bar {
-    padding: 10px;
     display: flex;
     border-bottom: 1px solid #293241;
 }
 
-.buy, .sell, .transformation {
-    padding-right: 15px;
-}
+
 
 .content {
     height: 209px;
@@ -75,6 +72,17 @@ label {
     font-size: 16px;
     color: #293241;
 }
+/* Chrome Edge Safari ... */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .price {
     position: relative;
 }
@@ -110,4 +118,97 @@ button {
     border-radius: 5px;
     background-color: #A2D2FF;
     color: #293241;
+}
+
+button:hover {
+    background-color: #BDE0FE;
+    cursor: pointer;
+}
+
+
+p:hover {
+    cursor: pointer;
+    color: #A2D2FF;
+}
+
+p {
+    padding: 10px;
+}
+
+p.active.first-p {
+    border-top-left-radius: 25px;
+    border-bottom:#84bcf0 solid 2px;
+    background-color: #f5f8fb;
+}
+p.active.second-p {
+    border-bottom:#84bcf0 solid 2px;
+    background-color: #f5f8fb;
+}
+p.active.third-p {
+    border-bottom:#84bcf0 solid 2px;
+    background-color: #f5f8fb;
+}
+
+@media (max-width: 665px) {
+    h1 {
+        font-size: 50px;
+    }
+    .container {
+        width: 400px;
+        height: 350px;
+    }
+    .content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 85%;
+    }
+    p {
+        font-size: 20px;
+    }
+    label {
+        font-size: 20px;
+    }
+    #price-input,
+    #amount-input,
+    #type-select {
+        width: 200px;
+        height: 50px;
+        font-size: 20px;
+    }
+    button {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 445px) {
+    h1 {
+        font-size: 55px;
+    }
+    .container {
+        width: 350px;
+        height: 500px;
+    }
+    p {
+        font-size: 25px;
+    }
+}
+@media (max-width: 375px) {
+    .container {
+        width: 300px;
+        height: 550px;
+    }
+    button {
+        font-size: 25px;
+    }
+    #price-input,
+    #amount-input,
+    #type-select {
+        width: 210px;
+        height: 65px;
+        font-size: 30px;
+    }
+    p {
+        font-size: 28px;
+    }
 }
