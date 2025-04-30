@@ -67,11 +67,24 @@ label {
     width: 140px;
     height: 40px;
     border-radius: 5px;
-    border: 2px solid #293241;
+    border: 2px solid #29324178;
     padding-left: 5px;
     font-size: 16px;
     color: #293241;
 }
+#price-input:hover,
+#amount-input:hover,
+#type-select:hover {
+    border-color: #4c9fec82;
+}
+
+#price-input:focus,
+#amount-input:focus,
+#type-select:focus {
+    border-color:#4c9fec;
+    outline: none;
+}
+
 /* Chrome Edge Safari ... */
 input[type="number"]::-webkit-inner-spin-button, 
 input[type="number"]::-webkit-outer-spin-button {
@@ -113,7 +126,7 @@ input[type="number"] {
 
 button {
     border: #293241 solid 1px;
-    font-size: 15px;
+    font-size: 13px;
     padding: 5px;
     border-radius: 5px;
     background-color: #A2D2FF;
@@ -139,14 +152,22 @@ p.active.first-p {
     border-top-left-radius: 25px;
     border-bottom:#84bcf0 solid 2px;
     background-color: #f5f8fb;
+    color: #84bcf0;
 }
 p.active.second-p {
-    border-bottom:#84bcf0 solid 2px;
+    border-bottom:#8dc1f3d4 solid 2px;
     background-color: #f5f8fb;
+    color: #8dc1f3d4;
 }
 p.active.third-p {
-    border-bottom:#84bcf0 solid 2px;
+    border-bottom: solid 2px;
     background-color: #f5f8fb;
+    color: #8dc1f3d4;
+}
+
+p {
+    width: 125px;
+    text-align: center;
 }
 
 @media (max-width: 665px) {
@@ -164,7 +185,11 @@ p.active.third-p {
         height: 85%;
     }
     p {
-        font-size: 20px;
+        width: 133px;
+        font-size: 18px;
+    }
+    p.active.third-p {
+        border-top-right-radius: 25px;
     }
     label {
         font-size: 20px;
@@ -179,9 +204,46 @@ p.active.third-p {
     button {
         font-size: 20px;
     }
+    
+    .price label {
+        top: -13px;
+        left: 10px;
+    }
+    .amount label {
+        top: -13px;
+        left: 10px;
+    }
+    .type label {
+        top: -13px;
+        left: 10px;
+    }
 }
 
 @media (max-width: 445px) {
+    .content {
+        justify-content: flex-start;
+    }
+    .nav-bar {
+        flex-direction: column;
+    }
+    #price-input,
+    #amount-input,
+    #type-select {
+        width: 180px;
+        height: 55px;
+        font-size: 22px;
+        margin: 15px 0px;
+    }
+    p {
+        font-size: 25px;
+        width: 100%;
+    }
+    p.first-p {
+        border-top-right-radius: 25px;
+    }
+    p.active.third-p {
+        border-top-right-radius: 0px;
+    }
     h1 {
         font-size: 55px;
     }
@@ -189,11 +251,25 @@ p.active.third-p {
         width: 350px;
         height: 500px;
     }
-    p {
-        font-size: 25px;
+
+    .price label {
+        top: 2px;
+        left: 10px;
     }
+    .amount label {
+        top: 2px;
+        left: 10px;
+    }
+    .type label {
+        top: 2px;
+        left: 10px;
+    }
+    
 }
 @media (max-width: 375px) {
+    .content {
+        justify-content: flex-start;
+    }
     .container {
         width: 300px;
         height: 550px;
@@ -207,8 +283,31 @@ p.active.third-p {
         width: 210px;
         height: 65px;
         font-size: 30px;
+        margin: 20px 0px;
     }
     p {
-        font-size: 28px;
+        font-size: 25px;
+        width: 100%;
+    }
+    p.first-p {
+        border-top-right-radius: 25px;
+    }
+    p.active.third-p {
+        border-top-right-radius: 0px;
+    }
+    .nav-bar {
+        flex-direction: column;
+    }
+    .price label {
+        top: 6px;
+        left: 10px;
+    }
+    .amount label {
+        top: 6px;
+        left: 10px;
+    }
+    .type label {
+        top: 6px;
+        left: 10px;
     }
 }
