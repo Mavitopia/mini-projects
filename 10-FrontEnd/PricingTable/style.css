@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: "Roboto Condensed", sans-serif;
+    background-color: rgba(219, 201, 252, 0.48)
+}
+
+.main {
+    text-align: center;
+    width: 100%;
+    padding-top: 35px;
+}
+
+#title {
+    color: #626377;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.time-plan {
+    display: inline-flex;
+    font-size: 12px;
+    color: rgb(154, 160, 161)
+}
+
+.toggle-switch {
+    width: 65px;
+}
+.switch {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 40px;
+    height: 20px;
+    margin: auto;
+    border-radius: 20px;
+    background: linear-gradient(320deg, #8B5CF6, #dbd0e2);
+}
+
+.toggle {
+    width: 15.5px;
+    height: 15.5px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    margin-right: 3px;
+}
+
+.pricing-table {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 55vh;
+}
+
+#basic-plan {
+    border-radius: 10px 0px 0px 10px;
+    background-color: whitesmoke;
+    width: 31%;
+    height: 80%;
+    box-shadow: 0px 0px 10px rgba(182, 179, 179, 0.85);
+    border: none;
+    padding: 30px 25px;
+}
+#master-plan {
+    border-radius: 0px 10px 10px 0px;
+    background-color: whitesmoke;
+    width: 31%;
+    height: 80%;
+    box-shadow: 0px 0px 10px rgba(182, 179, 179, 0.85);
+    border: none;
+    padding: 30px 25px;
+}
+#pro-plan {
+    border-radius: 10px;
+    background: linear-gradient(120deg, #cbc3eb, mediumpurple);
+    width: 34%;
+    height: 90%;
+    box-shadow: 0px 0px 5px rgb(183, 163, 235);
+    padding: 40px 25px;
+}
+
+.header-plan h2{
+    font-size: 15px;
+    color: rgba(80, 79, 79, 0.8);
+}
+.header-plan p{
+    color: #393838;
+    font-weight: 700;
+    padding-top: 15px;
+    font-size: 40px;
+    padding-bottom: 15px;
+    border-bottom: rgba(108, 117, 125, 0.47) solid 1px;
+}
+
+.price:before {
+    font-family: sans-serif;
+    content: "$";
+}
+.details-plan p{
+    font-weight: 450;
+    color: rgb(69, 67, 67);
+    font-size: 15px;
+    padding: 10px 0px;
+    border-bottom: rgba(108, 117, 125, 0.47) solid 1px;
+}
+.purchase-plan {
+    margin-top: 40px;
+}
+.purchase-plan button {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(117, 109, 199);
+    color: rgb(255, 255, 255);
+    transition: background-color 2s;
+}
+.middle-details p {
+    font-size: 17px;
+}
+.purchase-plan button:hover {
+    cursor: pointer;
+    background-color: rgb(134, 138, 212);
+}
+#middle-purchase button{
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 2px;
+    background-color: ghostwhite;
+    color: rgb(117, 109, 199);
+    transition: background-color 2s;
+}
+#middle-purchase button:hover{
+    cursor: pointer;
+    background-color: rgb(231, 232, 255);
+}
