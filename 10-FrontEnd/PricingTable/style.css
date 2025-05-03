@@ -416,4 +416,11 @@ body {
     .purchase-plan button {
         font-size: 35px;
     }
+    
+    #middle-purchase button {
+        font-size: 35px;
+    }
+    #middle-details p {
+        font-size: 30px;
+    }
 }
