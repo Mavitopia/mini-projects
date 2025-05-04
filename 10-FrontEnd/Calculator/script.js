@@ -33,6 +33,8 @@ let num1 = 0;
 let num2 = 0;
 
 let currentOperation = null;
+
+
 //FUNCS
 
 
@@ -46,12 +48,17 @@ listOfBtns.forEach((btn) => {
 
         let current = displayAmount.innerText.replaceAll(',','') + btn.innerText;
 
-        if (current.length === 16) return;
+        const isMobile = checkWindowsWidthMobile();
+        if (isMobile) {
+            if (current.length === 13) return;
+        } else {
+            if (current.length === 16) return;
+        }
                 
         if (current.length === 10) {
             displayAmount.style.fontSize = "2.5rem";
         } else if (current.length === 12) {
-            displayAmount.style.fontSize = "2.2rem";
+            displayAmount.style.fontSize = "2rem";
         }
         
         if (!operators.includes(btn)) {
@@ -154,9 +161,16 @@ operators.forEach((btn) => {
               default:
                 return;
             }
-          
             let raw = finalNum.toString();
-            if (raw.length > 16) raw = raw.slice(0, 16);
+
+            const isMobile = checkWindowsWidthMobile();
+            
+            if (isMobile) {
+                if (raw.length > 13) raw = raw.slice(0, 13);
+            } else {
+                if (raw.length > 16) raw = raw.slice(0, 16);
+            }
+
 
             const cappedNum = Number(raw);
             let formatted = formatter.format(cappedNum);
@@ -164,7 +178,7 @@ operators.forEach((btn) => {
             if (formatted.length === 10) {
               displayAmount.style.fontSize = "2.5rem";
             } else if (formatted.length >= 12) {
-              displayAmount.style.fontSize = "2.2rem";
+              displayAmount.style.fontSize = "2rem";
             }
           
             displayAmount.innerText = formatted;
@@ -173,3 +187,14 @@ operators.forEach((btn) => {
         })
  })
 
+// IFS
+function checkWindowsWidthMobile() {
+    let isDeviceMobile;
+
+    if (window.innerWidth <= 450) {
+        isDeviceMobile = true;
+    } else {
+        isDeviceMobile = false;
+    }
+    return isDeviceMobile;
+}

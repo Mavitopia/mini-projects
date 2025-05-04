@@ -27,13 +27,13 @@ body {
     box-shadow: 0px 0px 15px rgb(255, 192, 192);
 }
 .circle-1 {
-    right: -2%;
-    top: -2%;
+    right: -5%;
+    top: -5%;
     background: linear-gradient(120deg, rgb(255, 255, 255), rgb(255, 216, 216))
 }
 .circle-2 {
-    left: -2%;
-    bottom: -2%;
+    left: -5%;
+    bottom: -5%;
     background: linear-gradient(120deg, rgb(255, 255, 255), rgb(255, 216, 216))
 }
 .main {
@@ -117,3 +117,55 @@ body {
     scale: 1.01;
   }
 
+@media (max-width: 1250px) {
+    .calc {
+        height: 750px;
+        width: 400px;
+    }
+    .circle-1 {
+        right: -8%;
+        top: -8%;
+    }
+    .circle-2 {
+        left: -8%;
+        bottom: -8%;
+    }
+}
+
+@media (max-width: 450px) {
+    .circle {
+        width: 140px;
+        height: 150px;
+    }
+    .circle-1 {
+        right: -8%;
+        top: -8%;
+    }
+    .circle-2 {
+        left: -8%;
+        bottom: -8%;
+    }
+    .calc {
+        height: 600px;
+        width: 330px;
+    }
+}
+
+@media (max-height: 700px) {
+    .circle {
+        width: 120px;
+        height: 130px;
+    }
+    .circle-1 {
+        right: -10%;
+        top: -10%;
+    }
+    .circle-2 {
+        left: -10%;
+        bottom: -10%;
+    }
+    .calc {
+        height: 500px;
+        width: 330px;
+    }
+}
