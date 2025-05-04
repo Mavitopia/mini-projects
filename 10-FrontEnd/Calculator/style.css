@@ -151,7 +151,7 @@ body {
     }
 }
 
-@media (max-height: 700px) {
+@media (max-height: 800px) {
     .circle {
         width: 120px;
         height: 130px;
