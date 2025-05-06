@@ -1,5 +1,4 @@
-//VARS
-
+// === VARIABLES ===
 const clearBtn = document.getElementById("clear");
 const lessBtn = document.getElementById("greater");
 const slashBtn = document.getElementById("slash");
@@ -18,26 +17,100 @@ const threeBtn = document.getElementById("three");
 const equalBtn = document.getElementById("equal")
 const zeroBtn = document.getElementById("zero")
 const dotBtn = document.getElementById("dot")
-
+const displayOperation = document.getElementById("operation");
 const displayAmount = document.getElementById("amount");
 
 const listOfBtns = [clearBtn,lessBtn,slashBtn,xBtn,sevenBtn,eightBtn,nineBtn,minusBtn,fourBtn,fiveBtn,sixBtn,addBtn,oneBtn,twoBtn,threeBtn,equalBtn,zeroBtn,dotBtn];
-
 const operators = [lessBtn,slashBtn,xBtn,minusBtn,addBtn,equalBtn, clearBtn];
-
 let numberOfClicks = 0;
 
-const formatter = new Intl.NumberFormat('en-US');
+const formatter = new Intl.NumberFormat('en-US'); //formats numbers with commas
 
-let num1 = 0;
-let num2 = 0;
-
+let num1 = null;
+let num2 = null;
 let currentOperation = null;
 
 
-//FUNCS
+// === FUNCTIONS ===
+function setNumber(finalNum) {
+    let raw = finalNum.toString();
+
+    const isMobile = checkWindowsWidthMobile();
+
+    if (isMobile) {
+        if (raw.length > 13) raw = raw.slice(0, 13);
+    } else {
+        if (raw.length > 16) raw = raw.slice(0, 16);
+    }
 
 
+    const cappedNum = Number(raw);
+    let formatted = formatter.format(cappedNum);
+
+    if (formatted.length === 10) {
+        displayAmount.style.fontSize = "2.5rem";
+    } else if (formatted.length >= 12) {
+        displayAmount.style.fontSize = "2rem";
+    }
+
+    displayAmount.innerText = formatted;
+}
+
+function checkWindowsWidthMobile() {
+    let isDeviceMobile;
+
+    if (window.innerWidth <= 450) {
+        isDeviceMobile = true;
+    } else {
+        isDeviceMobile = false;
+    }
+    return isDeviceMobile;
+}
+
+function setOperation(operation) {
+    currentOperation = operation;
+
+    switch (operation) {
+        case "divide":
+            operation = "/"
+            break;
+        case "multiply":
+            operation = "x"
+            break;
+        case "minus":
+            operation = "-"
+            break;
+        case "add":
+            operation = "+"
+            break;
+        default:
+            return;
+    }
+
+    displayOperation.innerText = operation;
+}
+
+function calculate(num1, num2, currentOperation) {
+let finalNum;
+switch (currentOperation) {
+  case "divide":
+    finalNum = num1 / num2;
+    finalNum = Number(finalNum.toFixed(2));
+    break;
+  case "multiply":
+    finalNum = num1 * num2; break;
+  case "minus":
+    finalNum = num1 - num2; break;
+  case "add":
+    finalNum = num1 + num2; break;
+  default:
+    return;
+}
+
+return finalNum;
+}
+
+// === EVENT LISTENERS ===
 listOfBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
 
@@ -84,11 +157,17 @@ listOfBtns.forEach((btn) => {
 
 operators.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+
         if (btn === clearBtn) {
             displayAmount.innerText = "0";
             numberOfClicks = 0;
             displayAmount.style.fontSize = "3rem";
+            num1 = null;
+            num2 = null;
+            currentOperation = null;
+            displayOperation.innerText = "";
         }
+
         if (btn === lessBtn) {
 
             displayAmount.innerText = displayAmount.innerText.slice(0, -1);
@@ -102,99 +181,71 @@ operators.forEach((btn) => {
         if (btn === slashBtn) {
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
-            num1 = number;
-            displayAmount.innerText = "0";
-            numberOfClicks = 0;
-            displayAmount.style.fontSize = "3rem";
-
-            currentOperation = "divide";
+            if (!(num1 === null)) {
+                let finalNum = calculate(num1, number, currentOperation);
+                setNumber(finalNum);
+            } else {
+                num1 = number;
+                displayAmount.innerText = "0";
+                numberOfClicks = 0;
+                displayAmount.style.fontSize = "3rem";
+                setOperation("divide");
+            }
         }
         if (btn === xBtn) {
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
-            num1 = number;
-            displayAmount.innerText = "0";
-            numberOfClicks = 0;
-            displayAmount.style.fontSize = "3rem";
-
-            currentOperation = "multiply";
+            if (!(num1 === null)) {
+                let finalNum = calculate(num1, number, currentOperation);
+                setNumber(finalNum);
+            } else {
+                num1 = number;
+                displayAmount.innerText = "0";
+                numberOfClicks = 0;
+                displayAmount.style.fontSize = "3rem";
+                setOperation("multiply");
+            }
         }
 
         if (btn === minusBtn) {
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
-            num1 = number;
-            displayAmount.innerText = "0";
-            numberOfClicks = 0;
-            displayAmount.style.fontSize = "3rem";
-
-            currentOperation = "minus";
+            if (!(num1 === null)) {
+                let finalNum = calculate(num1, number, currentOperation);
+                setNumber(finalNum);
+            } else {
+                num1 = number;
+                displayAmount.innerText = "0";
+                numberOfClicks = 0;
+                displayAmount.style.fontSize = "3rem";
+                setOperation("minus");
+            }
         }
 
         if (btn === addBtn) {
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
-            num1 = number;
-            displayAmount.innerText = "0";
-            numberOfClicks = 0;
-            displayAmount.style.fontSize = "3rem";
-
-            currentOperation = "add";
+            if (!(num1 === null)) {
+                let finalNum = calculate(num1, number, currentOperation);
+                setNumber(finalNum);
+            } else {
+                num1 = number;
+                displayAmount.innerText = "0";
+                numberOfClicks = 0;
+                displayAmount.style.fontSize = "3rem";
+                setOperation("add");
+            }
         }
 
         if (btn === equalBtn) {
             const current = displayAmount.innerText.replaceAll(',', '');
             num2 = parseFloat(current);
           
-            let finalNum;
-            switch (currentOperation) {
-              case "divide":
-                finalNum = num1 / num2;
-                finalNum = Number(finalNum.toFixed(2));
-                break;
-              case "multiply":
-                finalNum = num1 * num2; break;
-              case "minus":
-                finalNum = num1 - num2; break;
-              case "add":
-                finalNum = num1 + num2; break;
-              default:
-                return;
-            }
-            let raw = finalNum.toString();
-
-            const isMobile = checkWindowsWidthMobile();
+            let finalNum = calculate(num1, num2, currentOperation);
             
-            if (isMobile) {
-                if (raw.length > 13) raw = raw.slice(0, 13);
-            } else {
-                if (raw.length > 16) raw = raw.slice(0, 16);
-            }
-
-
-            const cappedNum = Number(raw);
-            let formatted = formatter.format(cappedNum);
-          
-            if (formatted.length === 10) {
-              displayAmount.style.fontSize = "2.5rem";
-            } else if (formatted.length >= 12) {
-              displayAmount.style.fontSize = "2rem";
-            }
-          
-            displayAmount.innerText = formatted;
+            setNumber(finalNum);
           }
           
         })
  })
 
-// IFS
-function checkWindowsWidthMobile() {
-    let isDeviceMobile;
-
-    if (window.innerWidth <= 450) {
-        isDeviceMobile = true;
-    } else {
-        isDeviceMobile = false;
-    }
-    return isDeviceMobile;
-}
