@@ -115,6 +115,13 @@ function calculate(num1, num2, currentOperation) {
     return finalNum;
 }
 
+function getUserInput() {
+    const current = displayAmount.innerText.replaceAll(',', '');
+    const number = parseFloat(current);
+    return number;
+}
+
+
 // === EVENT LISTENERS ===
 listOfBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -190,8 +197,7 @@ operators.forEach((btn) => {
         }
         if (btn === slashBtn) {
             if ( !(editOption === false) ) { 
-            const current = displayAmount.innerText.replaceAll(',','');
-            const number = parseFloat(current);
+                const number = getUserInput();
             if (!(num1 === null)) {
                 num1 /= number;
                 setNumber(num1);
@@ -212,8 +218,7 @@ operators.forEach((btn) => {
         }
         if (btn === xBtn) {
             if ( !(editOption === false) ) { 
-            const current = displayAmount.innerText.replaceAll(',','');
-            const number = parseFloat(current);
+                const number = getUserInput();
             if (!(num1 === null)) {
                 num1 *= number;
                 setNumber(num1);
@@ -235,8 +240,7 @@ operators.forEach((btn) => {
 
         if (btn === minusBtn) {
             if ( !(editOption === false) ) { 
-            const current = displayAmount.innerText.replaceAll(',','');
-            const number = parseFloat(current);
+                const number = getUserInput();
             if (!(num1 === null)) {
                 num1 -= number;
                 setNumber(num1);
@@ -258,8 +262,7 @@ operators.forEach((btn) => {
 
         if (btn === addBtn) {
             if ( !(editOption === false) ) { 
-            const current = displayAmount.innerText.replaceAll(',','');
-            const number = parseFloat(current);
+                const number = getUserInput();
             if (!(num1 === null)) {
                 num1 += number;
                 setNumber(num1);
@@ -281,10 +284,14 @@ operators.forEach((btn) => {
 
         if (btn === equalBtn) {
             if (withOutEqual) {
-                setNumber(num1);
-                editOption = false;
-                displayAmount.style.color = 'green';
-                setOperation("equal");
+                if (!(displayAmount.innerText == "0")) {
+                    const number = getUserInput();
+                    let finalNum = calculate(num1, number, currentOperation)
+                    setNumber(finalNum)
+                    editOption = false;
+                    displayAmount.style.color = 'green';
+                    setOperation("equal");
+                }
             } else {
             const current = displayAmount.innerText.replaceAll(',', '');
             num2 = parseFloat(current);
