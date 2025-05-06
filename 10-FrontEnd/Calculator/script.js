@@ -30,6 +30,8 @@ let num1 = null;
 let num2 = null;
 let currentOperation = null;
 
+let editOption = true; // true = edit, false = no edit
+let withOutEqual = false; // got final num without equal sign
 
 // === FUNCTIONS ===
 function setNumber(finalNum) {
@@ -83,6 +85,9 @@ function setOperation(operation) {
         case "add":
             operation = "+"
             break;
+        case "equal":
+            operation = "="
+            break;
         default:
             return;
     }
@@ -91,23 +96,23 @@ function setOperation(operation) {
 }
 
 function calculate(num1, num2, currentOperation) {
-let finalNum;
-switch (currentOperation) {
-  case "divide":
-    finalNum = num1 / num2;
-    finalNum = Number(finalNum.toFixed(2));
-    break;
-  case "multiply":
-    finalNum = num1 * num2; break;
-  case "minus":
-    finalNum = num1 - num2; break;
-  case "add":
-    finalNum = num1 + num2; break;
-  default:
-    return;
-}
+    let finalNum;
+    switch (currentOperation) {
+    case "divide":
+        finalNum = num1 / num2;
+        finalNum = Number(finalNum.toFixed(2));
+        break;
+    case "multiply":
+        finalNum = num1 * num2; break;
+    case "minus":
+        finalNum = num1 - num2; break;
+    case "add":
+        finalNum = num1 + num2; break;
+    default:
+        return;
+    }
 
-return finalNum;
+    return finalNum;
 }
 
 // === EVENT LISTENERS ===
@@ -133,11 +138,13 @@ listOfBtns.forEach((btn) => {
         } else if (current.length === 12) {
             displayAmount.style.fontSize = "2rem";
         }
-        
-        if (!operators.includes(btn)) {
-            displayAmount.innerText += btn.innerText;
-        }
+        if (editOption) {
 
+            if (!operators.includes(btn)) {
+            displayAmount.innerText += btn.innerText;
+            }
+
+        }
         if (current.length % 3 === 0 && displayAmount.innerText.length > 0) {
             if (displayAmount.innerText.includes(".")) {
                 return;
@@ -166,10 +173,12 @@ operators.forEach((btn) => {
             num2 = null;
             currentOperation = null;
             displayOperation.innerText = "";
+            editOption = true;
+            displayAmount.style.color = 'rgb(240, 233, 233)';
         }
 
         if (btn === lessBtn) {
-
+            if (editOption) {
             displayAmount.innerText = displayAmount.innerText.slice(0, -1);
 
             if (displayAmount.innerText.length === 0) {
@@ -178,74 +187,114 @@ operators.forEach((btn) => {
                 displayAmount.style.fontSize = "3rem";
             }
         }
+        }
         if (btn === slashBtn) {
+            if ( !(editOption === false) ) { 
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
             if (!(num1 === null)) {
-                let finalNum = calculate(num1, number, currentOperation);
-                setNumber(finalNum);
+                num1 /= number;
+                setNumber(num1);
+                finalNum = num1;
+                editOption = true;
+                numberOfClicks = 0;
+                withOutEqual = true;
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
                 numberOfClicks = 0;
                 displayAmount.style.fontSize = "3rem";
                 setOperation("divide");
+                editOption = true;
+                withOutEqual = false;
             }
         }
+        }
         if (btn === xBtn) {
+            if ( !(editOption === false) ) { 
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
             if (!(num1 === null)) {
-                let finalNum = calculate(num1, number, currentOperation);
-                setNumber(finalNum);
+                num1 *= number;
+                setNumber(num1);
+                finalNum = num1;
+                editOption = true;
+                numberOfClicks = 0;
+                withOutEqual = true;
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
                 numberOfClicks = 0;
                 displayAmount.style.fontSize = "3rem";
                 setOperation("multiply");
+                editOption = true;
+                withOutEqual = false;
             }
+        }
         }
 
         if (btn === minusBtn) {
+            if ( !(editOption === false) ) { 
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
             if (!(num1 === null)) {
-                let finalNum = calculate(num1, number, currentOperation);
-                setNumber(finalNum);
+                num1 -= number;
+                setNumber(num1);
+                finalNum = num1;
+                editOption = true;
+                numberOfClicks = 0;
+                withOutEqual = true;
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
                 numberOfClicks = 0;
                 displayAmount.style.fontSize = "3rem";
                 setOperation("minus");
+                editOption = true;
+                withOutEqual = false;
             }
+        }
         }
 
         if (btn === addBtn) {
+            if ( !(editOption === false) ) { 
             const current = displayAmount.innerText.replaceAll(',','');
             const number = parseFloat(current);
             if (!(num1 === null)) {
-                let finalNum = calculate(num1, number, currentOperation);
-                setNumber(finalNum);
+                num1 += number;
+                setNumber(num1);
+                finalNum = num1;
+                editOption = true;
+                numberOfClicks = 0;
+                withOutEqual = true;
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
                 numberOfClicks = 0;
                 displayAmount.style.fontSize = "3rem";
                 setOperation("add");
+                editOption = true;
+                withOutEqual = false;
             }
+        }
         }
 
         if (btn === equalBtn) {
+            if (withOutEqual) {
+                setNumber(num1);
+                editOption = false;
+                displayAmount.style.color = 'green';
+                setOperation("equal");
+            } else {
             const current = displayAmount.innerText.replaceAll(',', '');
             num2 = parseFloat(current);
-          
             let finalNum = calculate(num1, num2, currentOperation);
-            
             setNumber(finalNum);
+            editOption = false;
+            displayAmount.style.color = 'green';
+            setOperation("equal");
           }
-          
+        }
         })
  })
 
