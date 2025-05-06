@@ -198,13 +198,20 @@ operators.forEach((btn) => {
         if (btn === slashBtn) {
             if ( !(editOption === false) ) { 
                 const number = getUserInput();
-            if (!(num1 === null)) {
+            if (!(num1 === null) && currentOperation === 'divide') {
                 num1 /= number;
                 setNumber(num1);
                 finalNum = num1;
                 editOption = true;
                 numberOfClicks = 0;
                 withOutEqual = true;
+            }  else if ( !(currentOperation === 'divide') && !(num1 === null) ) {
+                num1 = calculate(num1, number, currentOperation);
+                setNumber(num1);
+                setOperation('divide');
+                numberOfClicks = 0;
+                withOutEqual = true;
+                editOption = true
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
@@ -219,13 +226,20 @@ operators.forEach((btn) => {
         if (btn === xBtn) {
             if ( !(editOption === false) ) { 
                 const number = getUserInput();
-            if (!(num1 === null)) {
+            if (!(num1 === null) && currentOperation === 'multiply') {
                 num1 *= number;
                 setNumber(num1);
                 finalNum = num1;
                 editOption = true;
                 numberOfClicks = 0;
                 withOutEqual = true;
+            } else if ( !(currentOperation === 'multiply') && !(num1 === null) ) {
+                num1 = calculate(num1, number, currentOperation);
+                setNumber(num1);
+                setOperation('multiply');
+                numberOfClicks = 0;
+                withOutEqual = true;
+                editOption = true
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
@@ -237,17 +251,23 @@ operators.forEach((btn) => {
             }
         }
         }
-
         if (btn === minusBtn) {
             if ( !(editOption === false) ) { 
                 const number = getUserInput();
-            if (!(num1 === null)) {
+            if (!(num1 === null) && currentOperation === 'minus') {
                 num1 -= number;
                 setNumber(num1);
                 finalNum = num1;
                 editOption = true;
                 numberOfClicks = 0;
                 withOutEqual = true;
+            } else if ( !(currentOperation === 'minus') && !(num1 === null) ) {
+                num1 = calculate(num1, number, currentOperation);
+                setNumber(num1);
+                setOperation('minus');
+                numberOfClicks = 0;
+                withOutEqual = true;
+                editOption = true
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
@@ -259,17 +279,23 @@ operators.forEach((btn) => {
             }
         }
         }
-
         if (btn === addBtn) {
             if ( !(editOption === false) ) { 
                 const number = getUserInput();
-            if (!(num1 === null)) {
+            if (!(num1 === null) && currentOperation === 'add') {
                 num1 += number;
                 setNumber(num1);
                 finalNum = num1;
                 editOption = true;
                 numberOfClicks = 0;
                 withOutEqual = true;
+            } else if ( !(currentOperation === 'add') && !(num1 === null) ) {
+                num1 = calculate(num1, number, currentOperation);
+                setNumber(num1);
+                setOperation('add');
+                numberOfClicks = 0;
+                withOutEqual = true;
+                editOption = true
             } else {
                 num1 = number;
                 displayAmount.innerText = "0";
@@ -281,7 +307,6 @@ operators.forEach((btn) => {
             }
         }
         }
-
         if (btn === equalBtn) {
             if (withOutEqual) {
                 if (!(displayAmount.innerText == "0")) {
