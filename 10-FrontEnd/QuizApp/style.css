@@ -123,3 +123,47 @@ body {
     margin-top: 10px;
     font-size: 16px;
 }
+.content.invisible {
+    display: none;
+}
+
+/* Q-part */
+.quiz-page {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-background {
+    background-color: white;
+    position: relative;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-background::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 40px;
+    background: linear-gradient(45deg, #007bff, #00aaff, #00c6ff, #00e1ff, #00ffff);
+    top: -5px;
+    left: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    z-index: -1;
+}
+
+.progression-bar {
+    background-color: #333;
+    width: 300px;
+    height: 20px;
+}
