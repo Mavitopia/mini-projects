@@ -123,11 +123,6 @@
           }
         });
 
-        // play success sound on correct
-        if (chosen === correct) {
-          successAudio.currentTime = 0;
-          successAudio.play();
-        }
 
         // show Next Question button
         nextBtn.style.display = 'inline-block';
