@@ -273,6 +273,16 @@
         color: #ff9100;
       }
 
+      .badge-red {
+        background-color: rgba(255, 0, 0, 0.1);
+        color: #ff0000;
+      }
+
+      .badge-mediumred {
+        background-color: rgba(255, 69, 0, 0.1);
+        color: #ff4500;
+      }
+
       .badge-grey {
         background-color: rgba(108, 117, 125, 0.1);
         color: #6c757d;
@@ -564,6 +574,15 @@
               </div>
 
               <div class="project-item">
+                <div class="project-name">QuizApp</div>
+                <div class="project-meta">HTML/CSS/JS</div>
+                <div class="project-badges">
+                  <span class="badge badge-green">Completed</span>
+                  <span class="badge badge-mediumred">Medium/Hard</span>
+                </div>
+              </div>
+
+              <div class="project-item">
                 <div class="project-name">Coming Soon</div>
                 <div class="project-meta">New projects in development</div>
                 <div class="project-badges">
@@ -732,6 +751,8 @@
               window.open("./10-FrontEnd/PricingTable/index.html");
             } else if (projectName.toLowerCase() === "calculator") {
               window.open("./10-FrontEnd/Calculator/index.html");
+            } else if (projectName.toLowerCase() === "quizapp") {
+              window.open("./10-FrontEnd/QuizApp/index.html");
             }
           });
         });

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizMaster</title>
+
+    <!-- CSS/BOOTSTRAP/ICONS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">  
@@ -19,7 +21,7 @@
 
 
         <!-- HOMEPAGE -->
-        <div class="content invisible">
+        <div class="content">
             <div class="background-content">
                 <div class="contents">
                 <h2>Quiz illustration</h2>
@@ -31,8 +33,8 @@
         </div>
     </div>
 
-
-    <div class="quiz-page">
+    <!-- QUIZPAGE -->
+    <div class="quiz-page invisible">
         <div class="quiz-background">
         <div class="progression-bar">
             <div class="progress-bar" id="progress-bar"></div>
@@ -47,7 +49,7 @@
     </div>
         <div class="question">
             <h2 id="question">Question what of what</h2>
-            <p>...</p>
+            <p id="question-placeholder">...</p>
             <div class="answers">
                 <button type="button" class="btn-answer" id="answer1">Answer 1</button>
                 <button type="button" class="btn-answer" id="answer2">Answer 2</button>
@@ -66,5 +68,9 @@
         <div class="footer-content">
             <p>&copy; 2025 QuizMaster  | <a href="https://opentdb.com">Powered by Open Trivia Database</a></p>
         </div>
+
+        <!-- JS -->
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.js"></script>
+        <script src="./script.js"></script>
 </body>
 </html>
