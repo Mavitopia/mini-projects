@@ -49,6 +49,7 @@ body {
     padding: 35px;
     text-align: center;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    width: 740px;
 }
 
 .contents {
@@ -141,12 +142,13 @@ body {
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: white;
     padding: 35px;
     text-align: center;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    width: 740px;
+    height: 750px;
 }
 
 .quiz-background::before {
@@ -163,7 +165,86 @@ body {
 }
 
 .progression-bar {
-    background-color: #333;
-    width: 300px;
+    background-color: #e9ecef;
+    width: 680px;
     height: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.progress-bar {
+    border-radius: 15px;
+    background-color: #0d6efd;
+    width: 30%;
+    height: 100%;
+}
+
+.quiz-page.invisible {
+    display: none;
+}
+
+.category {
+    color: white;
+}
+.badge-category {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 25px;
+}
+.difficulty {
+    margin-left: 20px;
+}
+.difficulty h2 {
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+}
+.status-of-question {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.question {
+    text-align: start;
+    margin-top: 20px;
+}
+.question h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    margin: 20px 0;
+}
+.btn-answer {
+    width: 636px;
+    height: 60px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    text-align: start;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.btn-answer:hover {
+    cursor: pointer;
+    border-color: #6610f2;
+    background-color: #f9f6ff;
+}
+.btn-position {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 100px;
+}
+.btn-position button {
+    font-size: 20px;
+    font-weight: 600;
 }
