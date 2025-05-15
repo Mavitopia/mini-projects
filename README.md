@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-Available-green)](https://asloberg.github.io/mini-projects/)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-Available-green)](https://mavitopia.github.io/mini-projects/)
 
 ---
 
